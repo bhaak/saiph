@@ -251,6 +251,7 @@ void Corpse::init() {
 	create("silver dragon", 1500, 0, 0);
 	create("small mimic", 200, EAT_EFFECT_MIMIC, 0);
 	create("snake", 80, EAT_EFFECT_POISONOUS, 27);
+	create("snow ant", 10, 0, 20);
 	create("soldier", 400, EAT_EFFECT_HUMAN, 0);
 	create("soldier ant", 5, EAT_EFFECT_POISONOUS, 20);
 	create("spotted jelly", 20, EAT_EFFECT_VEGETARIAN | EAT_EFFECT_VEGAN | EAT_EFFECT_ACIDIC, 0);
