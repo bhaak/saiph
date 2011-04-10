@@ -41,6 +41,10 @@ void Fight::analyze() {
 			continue; // we're not fighting pets :)
 		else if (m->second.attitude() == FRIENDLY && m->second.symbol() != S_HUMANOID)
 			continue; // don't attack friendlies except dwarfs
+#if 0
+		else if (m->second.priest || m->second.shopkeeper)
+			continue; // don't attack priests or shopkeeper
+#endif
 		else if (m->second.symbol() == S_UNICORN && ((m->second.color() == BOLD_WHITE && Saiph::alignment() == LAWFUL) || (m->second.color() == WHITE && Saiph::alignment() == NEUTRAL) || (m->second.color() == BLUE && Saiph::alignment() == CHAOTIC)))
 			continue; // don't attack unicorns of same alignment
 		else if (m->second.data() == NULL) {
