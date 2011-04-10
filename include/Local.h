@@ -6,7 +6,7 @@
 #define READ_LIMIT 4095
 #define BUFFER_SIZE 65536
 /* local */
-#define LOCAL_NETHACK "/usr/games/nethack"
+#define LOCAL_NETHACK "/opt/unnethack/bin/unnethack"
 
 #include <string>
 #include "Connection.h"
