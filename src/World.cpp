@@ -918,11 +918,22 @@ void World::fetchMessages() {
 	_question = false; // we can do this as a question max last 1 turn
 	_msg_str = &_data[_data_size - sizeof (MORE)];
 	string::size_type pos = string::npos;
+	bool found = false;
+	const char *marker = NULL;
 	if ((pos = _msg_str.find(MORE, 0)) != string::npos) {
+		found = true;
+		marker = MORE;
+	} else if ((pos = _msg_str.find(ENDINV, 0)) != string::npos) {
+		found = true;
+		marker = ENDINV;
+	}
+	Debug::info() << WORLD_DEBUG_NAME << "Marker1: " << marker << endl;
+	if (found) {
 		/* "--More--" found */
 		_menu = false; // we don't have a menu then
+		Debug::info() << WORLD_DEBUG_NAME << "Marker2: " << marker << endl;
 		int r = _cursor.row();
-		int c = _cursor.col() - sizeof (MORE) + 1; // +1 because sizeof (MORE) is 9, not 8
+		int c = _cursor.col() - sizeof (marker) + 1; // +1 because sizeof (MORE) is 9, not 8
 		if (r == 0) {
 			/* only one line, remove "--More--" from end of line */
 			_msg_str = _view[r];
