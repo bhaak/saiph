@@ -34,6 +34,23 @@ Scroll::Scroll(Saiph* saiph) : Analyzer("Scroll"), saiph(saiph) {
 	appearance.push_back("XIXAXA XOXAXA XUXAXA");
 	appearance.push_back("YUM YUM");
 	appearance.push_back("ZELGO MER");
+	appearance.push_back("ETAOIN SHRDLU");
+	appearance.push_back("LOREM IPSUM");
+	appearance.push_back("FNORD");
+	appearance.push_back("KO BATE");
+	appearance.push_back("ACHAT SHTAYIM SHALOSH");
+	appearance.push_back("ABRA KA DABRA");
+	appearance.push_back("ASHPD");
+	appearance.push_back("SODALG");
+	appearance.push_back("ZLORFIK");
+	appearance.push_back("GNIK SISI VLE");
+	appearance.push_back("HAPAX LEGOMENON");
+	appearance.push_back("HZLRC KSTSBD MPFNG");
+	appearance.push_back("EIRIS SAZUN IDISI");
+	appearance.push_back("PHOL ENDE WODAN");
+	appearance.push_back("GHOTI");
+	appearance.push_back("MAPIRO MAHAMA DIROMAT");
+	appearance.push_back("VAS CORP BET MANI");
 }
 
 /* methods */

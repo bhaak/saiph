@@ -36,6 +36,18 @@ Potion::Potion(Saiph* saiph) : Analyzer("Potion"), saiph(saiph), command2("") {
 	appearance.push_back("swirly");
 	appearance.push_back("white");
 	appearance.push_back("yellow");
+	appearance.push_back("muddy");
+	appearance.push_back("sparkling");
+	appearance.push_back("luminescent");
+	appearance.push_back("icy");
+	appearance.push_back("squishy");
+	appearance.push_back("greasy");
+	appearance.push_back("slimy");
+	appearance.push_back("soapy");
+	appearance.push_back("ochre");
+	appearance.push_back("steamy");
+	appearance.push_back("gooey");
+	appearance.push_back("silver");
 }
 
 /* methods */
