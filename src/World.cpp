@@ -927,11 +927,9 @@ void World::fetchMessages() {
 		found = true;
 		marker = ENDINV;
 	}
-	Debug::info() << WORLD_DEBUG_NAME << "Marker1: " << marker << endl;
 	if (found) {
 		/* "--More--" found */
 		_menu = false; // we don't have a menu then
-		Debug::info() << WORLD_DEBUG_NAME << "Marker2: " << marker << endl;
 		int r = _cursor.row();
 		int c = _cursor.col() - sizeof (marker) + 1; // +1 because sizeof (MORE) is 9, not 8
 		if (r == 0) {
