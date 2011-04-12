@@ -19,7 +19,7 @@ using namespace event;
 using namespace std;
 
 /* constructors/destructor */
-Wand::Wand() : Analyzer("Wand"), _engrave_test_wand_key(0) {
+Wand::Wand() : Analyzer("Wand"), _engrave_test_wand_key(ILLEGAL_ITEM) {
 	/* register events */
 	EventBus::registerEvent(ReceivedItems::ID, this);
 	EventBus::registerEvent(WantItems::ID, this);
@@ -29,9 +29,9 @@ Wand::Wand() : Analyzer("Wand"), _engrave_test_wand_key(0) {
 void Wand::analyze() {
 	if (Inventory::itemAtKey(_engrave_test_wand_key) == Inventory::NO_ITEM)
 		return;
-	if (Saiph::engulfed() || Saiph::blind() || Saiph::hallucinating() || Saiph::confused() || Saiph::stunned() || (Saiph::extrinsics() & PROPERTY_LEVITATION) != 0 || World::level().tile().symbol() == GRAVE || World::level().tile().symbol() == ALTAR || World::level().tile().symbol() == FOUNTAIN || World::level().tile().symbol() == WATER || World::level().tile().symbol() == LAVA)
+	if (!action::Engrave::canEngrave())
 		return;
-	World::setAction(static_cast<action::Action*> (new action::Engrave(this, ELBERETH, _engrave_test_wand_key, PRIORITY_WAND_ENGRAVE_TEST)));
+	World::setAction(static_cast<action::Action*> (new action::Engrave(this, ELBERETH "\n", _engrave_test_wand_key, PRIORITY_WAND_ENGRAVE_TEST)));
 }
 
 void Wand::onEvent(Event * const event) {
@@ -74,11 +74,11 @@ void Wand::actionCompleted(const std::string& messages) {
 					World::queueAction(static_cast<action::Action*> (new action::Call(this, _engrave_test_wand_key, "wand of vanish")));
 				else
 					World::queueAction(static_cast<action::Action*> (new action::Call(this, _engrave_test_wand_key, w->first)));
-				_engrave_test_wand_key = 0;
+				_engrave_test_wand_key = ILLEGAL_ITEM;
 				return;
 			}
 		}
 		World::queueAction(static_cast<action::Action*> (new action::Call(this, _engrave_test_wand_key, "wand of unknown")));
-		_engrave_test_wand_key = 0;
+		_engrave_test_wand_key = ILLEGAL_ITEM;
 	}
 }
