@@ -61,7 +61,7 @@ void Fight::analyze() {
 			attack_score = m->second.data()->saiphDifficulty();
 		}
 		int distance = max(abs(m->first.row() - Saiph::position().row()), abs(m->first.col() - Saiph::position().col()));
-		bool floating_eye = (m->second.symbol() == S_EYE && m->second.color() == BLUE);
+		bool floating_eye = (m->second.data() != NULL && m->second.data()->name() == "floating eye");
 		if (m->second.visible() && (distance > 1 || floating_eye) && _projectile_slots.size() > 0 && distance <= Saiph::strength() / 2 && Saiph::encumbrance() < OVERTAXED) {
 			/* got projectiles and monster is not next to us or it's a floating eye.
 			 * should check if we can throw projectile at the monster */
