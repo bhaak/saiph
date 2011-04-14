@@ -1,5 +1,6 @@
 #include "Analyzers/Health.h"
 
+#include <algorithm>
 #include <stdlib.h>
 #include "Saiph.h"
 #include "World.h"
@@ -203,30 +204,14 @@ void Health::onEvent(event::Event * const event) {
 		WantItems* e = static_cast<WantItems*> (event);
 		for (map<unsigned char, Item>::iterator i = e->items().begin(); i != e->items().end(); ++i) {
 			if (i->second.beatitude() != CURSED && data::UnicornHorn::unicornHorns().find(i->second.name()) != data::UnicornHorn::unicornHorns().end()) {
-				/* non-cursed unihorn */
-				/* if we want to limit amount of unihorns, do it here, check inventory how many we got */
-				int unihornNum = 0;
-				for (map<unsigned char, Item>::iterator i2 = e->items().begin(); i2 != e->items().end(); ++i2) {
-					if (i2->second.beatitude() != CURSED && data::UnicornHorn::unicornHorns().find(i->second.name()) != data::UnicornHorn::unicornHorns().end())
-						unihornNum++;
-				}
-				/* keep at least 3 on hand */
-				if (unihornNum < 3)
-					i->second.want(i->second.count());
+				/* let's pick up all non-cursed unihorns */
+				i->second.want(i->second.count());
 				continue;
 			}
 			map<const string, const data::Corpse*>::const_iterator c = data::Corpse::corpses().find(i->second.name());
 			if (c != data::Corpse::corpses().end() && (c->second->effects() & EAT_EFFECT_CURE_STONING)) {
-				/* lizard corpse */
-				/* if we want to limit amount of lizard corpses, do it here, check inventory how many we got */
-				int lizardNum = 0;
-				for (map<unsigned char, Item>::iterator i2 = e->items().begin(); i2 != e->items().end(); ++i2) {
-					map<const string, const data::Corpse*>::const_iterator c2 = data::Corpse::corpses().find(i2->second.name());
-					if (c != data::Corpse::corpses().end() && (c->second->effects() & EAT_EFFECT_CURE_STONING))
-						lizardNum++;
-				}
-				if (lizardNum < 3)
-					i->second.want(i->second.count());
+				/* let's pick up all lizard corpses */
+				i->second.want(i->second.count());
 				continue;
 			}
 		}
